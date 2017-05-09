@@ -37,6 +37,11 @@ public abstract class BinnerAdapter extends DelegateAdapter.Adapter<BinnerAdapte
     }
 
     @Override
+    public int getItemViewType(int position) {
+        return Types.BINNER_TYPE;
+    }
+
+    @Override
     public int getItemCount() {
         return 1;
     }

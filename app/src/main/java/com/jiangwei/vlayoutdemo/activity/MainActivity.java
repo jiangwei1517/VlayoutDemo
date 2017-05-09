@@ -132,9 +132,17 @@ public class MainActivity extends Activity {
         staggeredGridLayoutHelper.setMarginBottom(30);
         adapters.add(new StaggeredAdapter(this, staggeredGridLayoutHelper, mTianMao.history.size()) {
             @Override
-            public void onBindViewHolder(StaggeredViewHolder holder, int position) {
+            public void onBindViewHolder(final StaggeredViewHolder holder, int position) {
                 holder.llMain.getLayoutParams().height = mTianMao.history.get(position).height;
                 holder.llMain.getLayoutParams().width = 400;
+                holder.itemView.setTag(position);
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        int i = (int) holder.itemView.getTag();
+                        ToastUtils.showToast(MainActivity.this, mTianMao.history.get(i).name);
+                    }
+                });
                 Glide.with(MainActivity.this).load(mTianMao.history.get(position).imgUrl).dontAnimate().into(holder.iv);
             }
         });
@@ -153,6 +161,7 @@ public class MainActivity extends Activity {
         });
 
         GridLayoutHelper gridLayoutHelper = new GridLayoutHelper(2);
+        gridLayoutHelper.setGap(10);
         gridLayoutHelper.setMarginBottom(30);
         adapters.add(new TodayHotAdapter(this, gridLayoutHelper, mTianMao.todayHots.size()) {
             @Override

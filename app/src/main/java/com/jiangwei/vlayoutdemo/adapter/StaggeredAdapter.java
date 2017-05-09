@@ -41,6 +41,11 @@ public abstract class StaggeredAdapter extends DelegateAdapter.Adapter<Staggered
     }
 
     @Override
+    public int getItemViewType(int position) {
+        return Types.STAGGERED_TYPE;
+    }
+
+    @Override
     public int getItemCount() {
         return mCount;
     }

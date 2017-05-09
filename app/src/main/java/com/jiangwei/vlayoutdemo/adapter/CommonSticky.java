@@ -36,6 +36,10 @@ public abstract class CommonSticky extends DelegateAdapter.Adapter<CommonSticky.
         return new CommonStickyViewHolder(v);
     }
 
+    @Override
+    public int getItemViewType(int position) {
+        return Types.COMMON_STICKY_TYPE;
+    }
 
     @Override
     public int getItemCount() {

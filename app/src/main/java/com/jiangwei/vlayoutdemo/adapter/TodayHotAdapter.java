@@ -39,6 +39,11 @@ public abstract class TodayHotAdapter extends DelegateAdapter.Adapter<TodayHotAd
     }
 
     @Override
+    public int getItemViewType(int position) {
+        return Types.TODAY_HOT_TYPE;
+    }
+
+    @Override
     public int getItemCount() {
         return mCount;
     }

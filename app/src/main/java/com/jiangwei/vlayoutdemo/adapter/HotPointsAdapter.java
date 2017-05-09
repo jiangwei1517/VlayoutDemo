@@ -40,6 +40,11 @@ public abstract class HotPointsAdapter extends DelegateAdapter.Adapter<HotPoints
     }
 
     @Override
+    public int getItemViewType(int position) {
+        return Types.HOTPOINTS_TYPE;
+    }
+
+    @Override
     public int getItemCount() {
         return mCount;
     }

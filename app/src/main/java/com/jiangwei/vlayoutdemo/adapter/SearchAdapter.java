@@ -36,6 +36,11 @@ public abstract class SearchAdapter extends DelegateAdapter.Adapter<SearchAdapte
     }
 
     @Override
+    public int getItemViewType(int position) {
+        return Types.SEARCH_TYPE;
+    }
+
+    @Override
     public int getItemCount() {
         return 1;
     }
