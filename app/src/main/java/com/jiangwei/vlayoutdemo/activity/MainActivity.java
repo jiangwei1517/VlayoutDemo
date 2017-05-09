@@ -12,6 +12,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.view.WindowManager;
 import android.view.animation.Interpolator;
 import android.widget.ImageView;
 import android.widget.Scroller;
@@ -19,6 +20,7 @@ import android.widget.TextView;
 
 import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.VirtualLayoutManager;
+import com.alibaba.android.vlayout.layout.FloatLayoutHelper;
 import com.alibaba.android.vlayout.layout.GridLayoutHelper;
 import com.alibaba.android.vlayout.layout.SingleLayoutHelper;
 import com.alibaba.android.vlayout.layout.StaggeredGridLayoutHelper;
@@ -28,6 +30,7 @@ import com.bumptech.glide.Glide;
 import com.jiangwei.vlayoutdemo.R;
 import com.jiangwei.vlayoutdemo.adapter.BinnerAdapter;
 import com.jiangwei.vlayoutdemo.adapter.CommonSticky;
+import com.jiangwei.vlayoutdemo.adapter.FloatAdapter;
 import com.jiangwei.vlayoutdemo.adapter.HotPointsAdapter;
 import com.jiangwei.vlayoutdemo.adapter.SearchAdapter;
 import com.jiangwei.vlayoutdemo.adapter.StaggeredAdapter;
@@ -37,6 +40,7 @@ import com.jiangwei.vlayoutdemo.utils.ToastUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.ref.WeakReference;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
@@ -46,23 +50,29 @@ import static android.view.Window.FEATURE_NO_TITLE;
 public class MainActivity extends Activity {
     private RecyclerView mRecyclerView;
     private TianMao mTianMao;
-    private MyHandler mHandler = new MyHandler();
+    private MyHandler mHandler = new MyHandler(this);
     private static int BinnerMessage_Loop = 1;
-    private static ViewPager mVp;
+    public ViewPager mVp;
     private int newPosition;
     private int mSearchViewHeight;
     private StickyLayoutHelper mStickyLayoutHelperHot;
     private StickyLayoutHelper mStickyLayoutHelperToday;
     private StickyLayoutHelper mStickyLayoutHelperHistory;
+    private WindowManager mWindowManager;
 
     public static class MyHandler extends Handler {
+        private WeakReference<MainActivity> weakReference;
+
+        public MyHandler(MainActivity activity) {
+            weakReference = new WeakReference<MainActivity>(activity);
+        }
+
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             switch (msg.what) {
                 case 1:
-                    removeCallbacksAndMessages(null);
-                    mVp.setCurrentItem(mVp.getCurrentItem() + 1);
+                    weakReference.get().mVp.setCurrentItem(weakReference.get().mVp.getCurrentItem() + 1);
                     sendEmptyMessageDelayed(BinnerMessage_Loop, 4000);
                     break;
                 default:
@@ -78,7 +88,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         getDataFromJson("index_json.json");
-
+        mWindowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
         mRecyclerView = (RecyclerView) findViewById(R.id.recycleView);
         VirtualLayoutManager vlm = new VirtualLayoutManager(this);
         mRecyclerView.setLayoutManager(vlm);
@@ -96,6 +106,8 @@ public class MainActivity extends Activity {
         mStickyLayoutHelperHistory = new StickyLayoutHelper();
         mStickyLayoutHelperHistory.setStickyStart(true);
 
+        tianMaoShopping(adapters);
+
         tianMaoSearchView(adapters);
 
         tianMaoBinnerView(adapters);
@@ -106,11 +118,32 @@ public class MainActivity extends Activity {
 
         tianMaoHistory(adapters);
 
-
         //绑定delegateAdapter
         DelegateAdapter delegateAdapter = new DelegateAdapter(vlm);
         delegateAdapter.setAdapters(adapters);
         mRecyclerView.setAdapter(delegateAdapter);
+    }
+
+    /*
+        天猫购物车 有bug,必须放在adapters的最前面,放后面不能滑动
+     */
+    private void tianMaoShopping(List<DelegateAdapter.Adapter> adapters) {
+        //设置浮动布局
+        FloatLayoutHelper floatLayoutHelper = new FloatLayoutHelper();
+        //设置初始位置
+        floatLayoutHelper.setDefaultLocation(20, 250);
+
+        adapters.add(new FloatAdapter(this, floatLayoutHelper) {
+            @Override
+            public void onBindViewHolder(FloatViewHolder holder, int position) {
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ToastUtils.showToast(MainActivity.this, "购物车");
+                    }
+                });
+            }
+        });
     }
 
     /*
@@ -133,8 +166,9 @@ public class MainActivity extends Activity {
         adapters.add(new StaggeredAdapter(this, staggeredGridLayoutHelper, mTianMao.history.size()) {
             @Override
             public void onBindViewHolder(final StaggeredViewHolder holder, int position) {
+                int display = mWindowManager.getDefaultDisplay().getWidth();
                 holder.llMain.getLayoutParams().height = mTianMao.history.get(position).height;
-                holder.llMain.getLayoutParams().width = 400;
+                holder.llMain.getLayoutParams().width = (display - 60) / 2;
                 holder.itemView.setTag(position);
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -262,7 +296,7 @@ public class MainActivity extends Activity {
         adapters.add(new BinnerAdapter(this, singleLayoutHelper) {
             @Override
             public void onBindViewHolder(final BinnerViewHolder holder, int position) {
-
+                mHandler.removeMessages(BinnerMessage_Loop);
                 mVp = holder.vp;
                 holder.vp.setAdapter(new PagerAdapter() {
                     @Override
@@ -301,32 +335,25 @@ public class MainActivity extends Activity {
                 });
                 setViewPagerScroller();
                 holder.vp.setCurrentItem(Integer.MAX_VALUE / 2);
-                mVp.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        mHandler.removeCallbacksAndMessages(null);
-                        mHandler.sendEmptyMessage(BinnerMessage_Loop);
-                    }
-                }, 4000);
+                mHandler.sendEmptyMessageDelayed(BinnerMessage_Loop, 4000);
                 holder.vp.setOnTouchListener(new View.OnTouchListener() {
                     @Override
                     public boolean onTouch(View v, MotionEvent event) {
                         switch (event.getAction()) {
                             case MotionEvent.ACTION_DOWN:
-                                mHandler.removeCallbacksAndMessages(null);
                                 break;
 
                             case MotionEvent.ACTION_MOVE:
-
+                                mHandler.removeMessages(BinnerMessage_Loop);
                                 break;
 
                             case MotionEvent.ACTION_UP:
-                                mHandler.removeCallbacksAndMessages(null);
+                                mHandler.removeMessages(BinnerMessage_Loop);
                                 mHandler.sendEmptyMessageDelayed(BinnerMessage_Loop, 4000);
                                 break;
 
                             case MotionEvent.ACTION_CANCEL:
-                                mHandler.removeCallbacksAndMessages(null);
+                                mHandler.removeMessages(1);
                                 mHandler.sendEmptyMessageDelayed(BinnerMessage_Loop, 4000);
                                 break;
                         }
