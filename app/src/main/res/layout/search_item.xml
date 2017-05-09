@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/holo_orange_light">
+
+    <RelativeLayout
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+
+        <ImageView
+            android:id="@+id/iv_search"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/search" />
+
+        <EditText
+            android:id="@+id/et"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/iv_search"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@+id/iv_search" />
+
+        <ImageView
+            android:id="@+id/iv_camera"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@+id/et"
+            android:src="@drawable/camera" />
+
+        <ImageView
+            android:id="@+id/iv_map"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@+id/iv_camera"
+            android:src="@drawable/map" />
+
+        <ImageView
+            android:id="@+id/iv_notice"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@+id/iv_map"
+            android:src="@drawable/notice" />
+
+    </RelativeLayout>
+</RelativeLayout>

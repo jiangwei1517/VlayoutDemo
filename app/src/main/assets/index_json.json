@@ -1,0 +1,250 @@
+{
+  "loopData": {
+    "items": [
+      {
+        "id": "0",
+        "descText": "The first picture",
+        "imgUrl": "http://img.alicdn.com/tps/i3/TB1urIUJXXXXXa8XpXXgoUDMFXX-1680-400.jpg",
+        "link": "https://github.com/xuehuayous/WrapRecyclerView"
+      },
+      {
+        "id": "1",
+        "descText": "The second picture",
+        "imgUrl": "http://i.mmcdn.cn/simba/img/TB1FyZYIVXXXXaRXVXXSutbFXXX.jpg",
+        "link": "https://github.com/xuehuayous/WrapRecyclerView"
+      },
+      {
+        "id": "2",
+        "descText": "The third picture",
+        "imgUrl": "http://img.alicdn.com/tps/i1/TB1PRgKJXXXXXcSXFXXgoUDMFXX-1680-400.jpg",
+        "link": "https://github.com/xuehuayous/WrapRecyclerView"
+      },
+      {
+        "id": "3",
+        "descText": "The fourth picture",
+        "imgUrl": "http://img.alicdn.com/tps/i2/TB1CeQRJXXXXXcbXpXXgoUDMFXX-1680-400.jpg",
+        "link": "https://github.com/xuehuayous/WrapRecyclerView"
+      },
+      {
+        "id": "4",
+        "descText": "The fifth picture",
+        "imgUrl": "http://img.alicdn.com/tps/i3/TB1ws32JXXXXXXgXXXXgoUDMFXX-1680-400.jpg",
+        "link": "https://github.com/xuehuayous/WrapRecyclerView"
+      },
+      {
+        "id": "5",
+        "descText": "The sixth picture",
+        "imgUrl": "http://img.alicdn.com/tps/i2/TB1SNQFJXXXXXbjXpXXl_Xx2XXX-1680-400.jpeg",
+        "link": "https://github.com/xuehuayous/WrapRecyclerView"
+      },
+      {
+        "id": "6",
+        "descText": "The seventh picture",
+        "imgUrl": "http://img.alicdn.com/tps/i3/TB1IAsHJXXXXXaqXVXXgoUDMFXX-1680-400.jpg",
+        "link": "https://github.com/xuehuayous/WrapRecyclerView"
+      }
+    ]
+  },
+  "hotPoint": [
+    {
+      "imgUrl": "https://img.alicdn.com/tps/i3/TB1DGkJJFXXXXaZXFXX07tlTXXX-200-200.png_88x88xz.jpg",
+      "name": "天猫"
+    },
+    {
+      "imgUrl": "https://img.alicdn.com/tps/i4/TB1CKSgIpXXXXccXXXX07tlTXXX-200-200.png_88x88xz.jpg",
+      "name": "聚划算"
+    },
+    {
+      "imgUrl": "https://img.alicdn.com/tps/TB17c96OXXXXXaUXFXXXXXXXXXX-200-200.png_88x88xz.jpg",
+      "name": "淘票票"
+    },
+    {
+      "imgUrl": "https://img.alicdn.com/tps/i3/TB15GYBKXXXXXXcXpXX07tlTXXX-200-200.png_88x88xz.jpg",
+      "name": "爱逛街"
+    },
+    {
+      "imgUrl": "https://img.alicdn.com/tps/TB1gwh3KFXXXXXkaXXXXXXXXXXX-200-200.png_88x88xz.jpg",
+      "name": "蚂蚁聚宝"
+    },
+    {
+      "imgUrl": "https://img.alicdn.com/tps/TB1zEtNPVXXXXbAXFXXXXXXXXXX-200-200.png_88x88xz.jpg",
+      "name": "飞猪"
+    },
+    {
+      "imgUrl": "https://img.alicdn.com/tps/i2/TB1p6kgIXXXXXXTXXXXezUPJpXX-87-87.jpg_88x88xz.jpg",
+      "name": "闲鱼"
+    },
+    {
+      "imgUrl": "https://img.alicdn.com/tfs/TB1lXzzKpXXXXXnXVXXXXXXXXXX-200-200.png_88x88xz.jpg",
+      "name": "淘宝全球"
+    },
+    {
+      "imgUrl": "https://img.alicdn.com/tps/TB1efJ4LXXXXXXmXVXXXXXXXXXX-200-200.png_88x88xz.jpg",
+      "name": "淘宝头条"
+    },
+    {
+      "imgUrl": "https://img.alicdn.com/tps/TB10X1LKVXXXXbSXFXXXXXXXXXX-200-200.png_88x88xz.jpg",
+      "name": "一淘"
+    }
+  ],
+  "todayHot": [
+    {
+      "imgUrlBig": "https://img.alicdn.com/tps/TB1UTY.KXXXXXa0XXXXXXXXXXXX-180-400.jpg_200x200.jpg",
+      "nameBig": "唇膏",
+      "imgUrlSmall": "https://img.alicdn.com/tps/TB1lfiGMpXXXXXeXFXXXXXXXXXX-200-200.jpg_120x120.jpg",
+      "nameSmall": "美发",
+      "imgUrlSmall2": "https://img.alicdn.com/tps/TB1V6VMLXXXXXcxapXXXXXXXXXX-430-430.jpg_120x120.jpg",
+      "nameSmall2": "香水"
+    },
+    {
+      "imgUrlBig": "https://img.alicdn.com/tps/TB1WPz.NFXXXXagapXXXXXXXXXX-180-400.png_200x200.jpg",
+      "nameBig": "萌妹子",
+      "imgUrlSmall": "https://img.alicdn.com/tps/TB1NZwJNFXXXXbPXXXXXXXXXXXX-180-180.png_120x120.jpg",
+      "nameSmall": "包治百病",
+      "imgUrlSmall2": "https://img.alicdn.com/tps/TB15OZHNFXXXXXDXpXXXXXXXXXX-180-180.png_120x120.jpg",
+      "nameSmall2": "女神战靴"
+    },
+    {
+      "imgUrlBig": "https://img.alicdn.com/imgextra/i1/801068322/TB2cDeXp.hnpuFjSZFpXXcpuXXa_!!801068322.jpg_210x1000q90.jpg_.webp",
+      "nameBig": "厨具",
+      "imgUrlSmall": "https://img.alicdn.com/tps/TB1wxzHLVXXXXboXVXXXXXXXXXX-80-80.jpg_80x80q90.jpg_.webp",
+      "nameSmall": "高跟鞋",
+      "imgUrlSmall2": "https://img.alicdn.com/tps/TB1d_vBLVXXXXbqaXXXXXXXXXXX-80-80.jpg_80x80q90.jpg_.webp",
+      "nameSmall2": "高跟鞋"
+    },
+    {
+      "imgUrlBig": "https://img.alicdn.com/tps/TB17ATAPXXXXXc7XVXXXXXXXXXX-200-402.jpg_210x1000q90.jpg_.webp",
+      "nameBig": "耳机",
+      "imgUrlSmall": "https://img.alicdn.com/tps/TB1FbnzLVXXXXXEapXXXXXXXXXX-60-60.jpg_120x120q90.jpg_.webp",
+      "nameSmall": "男鞋",
+      "imgUrlSmall2": "https://img.alicdn.com/tps/TB1OmvBLVXXXXbbaXXXXXXXXXXX-60-60.jpg_120x120q90.jpg_.webp",
+      "nameSmall2": "运动鞋"
+    },
+    {
+      "imgUrlBig": "https://img.alicdn.com/tfs/TB16IAhQVXXXXXNXpXXXXXXXXXX-200-402.jpg_210x1000q90.jpg_.webp",
+      "nameBig": "童年",
+      "imgUrlSmall": "https://gw.alicdn.com/tfscom/TB1XN1INXXXXXbbaXXXXXXXXXXX_120x120.jpg",
+      "nameSmall": "项链",
+      "imgUrlSmall2": "https://gw.alicdn.com/tfscom/TB1pG0yNFXXXXXvaXXXXXXXXXXX_120x120.jpg",
+      "nameSmall2": "口红"
+    },
+    {
+      "imgUrlBig": "https://img.alicdn.com/tps/TB1b2_5LXXXXXaqXXXXXXXXXXXX-200-402.jpg_210x1000q90.jpg_.webp",
+      "nameBig": "珠宝",
+      "imgUrlSmall": "https://img.alicdn.com/tps/TB1QsYnJVXXXXbVXVXXXXXXXXXX-200-200.jpg_120x120.jpg",
+      "nameSmall": "手链",
+      "imgUrlSmall2": "https://img.alicdn.com/tps/TB1WnYdJVXXXXbnaXXXXXXXXXXX-200-200.jpg_120x120.jpg",
+      "nameSmall2": "热门女靴"
+    },
+    {
+      "imgUrlBig": "https://img.alicdn.com/tps/TB13Ae5OpXXXXa6XFXXXXXXXXXX-200-402.jpg_210x1000q90.jpg",
+      "nameBig": "衣柜",
+      "imgUrlSmall": "https://gd1.alicdn.com/imgextra/i8/TB1QyGgOpXXXXb8apXXYXGcGpXX_M2.SS2_120x120.jpg",
+      "nameSmall": "大自然",
+      "imgUrlSmall2": "https://gw.alicdn.com/tps/TB1zdscOVXXXXXVXpXXXXXXXXXX-240-240.jpg_120x120.jpg",
+      "nameSmall2": "沙发"
+    },
+    {
+      "imgUrlBig": "https://img.alicdn.com/tps/TB14ZbPLXXXXXa.XFXXXXXXXXXX-200-402.jpg_210x1000q90.jpg_.webp",
+      "nameBig": "墨镜",
+      "imgUrlSmall": "https://img.alicdn.com/tps/TB1V3mkNpXXXXa5XFXXXXXXXXXX-90-90.jpg_120x120.jpg",
+      "nameSmall": "SUV",
+      "imgUrlSmall2": "https://gw.alicdn.com/bao/uploaded/TB1EGvvPVXXXXX3aXXXXXXXXXXX-200-200.jpg_120x120.jpg",
+      "nameSmall2": "轮胎"
+    },
+    {
+      "imgUrlBig": "https://img.alicdn.com/tps/i1/TB1fxXGMpXXXXXtXpXXj64lTXXX-200-200.jpg_120x120.jpg",
+      "nameBig": "多肉",
+      "imgUrlSmall": "https://img.alicdn.com/tps/TB1vM6cNXXXXXXYaXXXXXXXXXXX-300-300.jpg_120x120.jpg",
+      "nameSmall": "玩具",
+      "imgUrlSmall2": "https://img.alicdn.com/tps/TB1MITnNXXXXXX5XVXXXXXXXXXX-300-300.jpg_120x120.jpg",
+      "nameSmall2": "童鞋"
+    },
+    {
+      "imgUrlBig": "https://img.alicdn.com/bao/uploaded/i1/TB1okguKFXXXXXHXFXXSutbFXXX.jpg_120x120.jpg",
+      "nameBig": "巴旦木",
+      "imgUrlSmall": "https://img.alicdn.com/tps/TB1gWIvJpXXXXX.aXXXXXXXXXXX-200-200.jpg_120x120.jpg",
+      "nameSmall": "小吃",
+      "imgUrlSmall2": "https://img.alicdn.com/bao/uploaded/i2/TB1tJ6.KFXXXXa.XFXXSutbFXXX.jpg_120x120.jpg",
+      "nameSmall2": "黄瓜"
+    },
+    {
+      "imgUrlBig": "https://img.alicdn.com/tps/TB1FYVzMpXXXXXWXFXXXXXXXXXX-200-200.jpg_120x120.jpg",
+      "nameBig": "鱼缸",
+      "imgUrlSmall": "https://img.alicdn.com/tps/TB1yPvKMpXXXXaaXpXXXXXXXXXX-200-200.jpg_120x120.jpg",
+      "nameSmall": "鱼",
+      "imgUrlSmall2": "https://img.alicdn.com/tfs/TB1x2pqQFXXXXcoXVXXXXXXXXXX-200-200.jpg_120x120.jpg",
+      "nameSmall2": "熊宝宝"
+    },
+    {
+      "imgUrlBig": "https://img.alicdn.com/tfscom/TB1n4cJOVXXXXahaXXXSutbFXXX_120x120.jpg",
+      "nameBig": "VR",
+      "imgUrlSmall": "https://img.alicdn.com/tfscom/TB19oVlPFXXXXbkXXXXSutbFXXX_120x120.jpg",
+      "nameSmall": "大保健",
+      "imgUrlSmall2": "https://img.alicdn.com/tfscom/TB1.OIpQXXXXXXrXXXXSutbFXXX_120x120.jpg",
+      "nameSmall2": "电动车"
+    }
+  ],
+  "history": [
+    {
+      "imgUrl": "https://img.alicdn.com/tfscom/i1/1098606034748044420/TB2hO4ErtFopuFjSZFHXXbSlXXa_!!0-dgshop.jpg_240x240q90_.webp",
+      "name": "女版衬衫",
+      "width": 350,
+      "height": 350
+    },
+    {
+      "imgUrl": "https://img.alicdn.com/tfs/TB1TUv0QVXXXXb9aXXXXXXXXXXX-200-200.jpg_120x120.jpg",
+      "name": "音响",
+      "width": 300,
+      "height": 300
+    },
+    {
+      "imgUrl": "https://img.alicdn.com/tps/TB1G8HpOFXXXXb.apXXXXXXXXXX-360-280.jpg_180x180q90.jpg",
+      "name": "家具",
+      "width": 350,
+      "height": 350
+    },
+    {
+      "imgUrl": "https://img.alicdn.com/tps/TB13Ae5OpXXXXa6XFXXXXXXXXXX-200-402.jpg_210x1000q90.jpg",
+      "name": "橱柜",
+      "width": 300,
+      "height": 450
+    },
+    {
+      "imgUrl": "https://img.alicdn.com/tps/TB1_EpkLpXXXXXYXpXXXXXXXXXX-200-200.jpg_120x120.jpg",
+      "name": "运动",
+      "width": 350,
+      "height": 350
+    },
+    {
+      "imgUrl": "https://img.alicdn.com/bao/uploaded/i7/TB1jCs7PVXXXXaSXFXXYXGcGpXX_M2.SS2_200x200.jpg",
+      "name": "NIKE",
+      "width": 300,
+      "height": 400
+    },
+    {
+      "imgUrl": "https://img.alicdn.com/tps/TB1GcV5PXXXXXc7XVXXXXXXXXXX-360-280.jpg_180x180q90.jpg_.webp",
+      "name": "机械键盘",
+      "width": 300,
+      "height": 300
+    },
+    {
+      "imgUrl": "https://img.alicdn.com/simba/img/TB1fveXPVXXXXcIXpXXSutbFXXX.jpg",
+      "name": "游戏机",
+      "width": 300,
+      "height": 450
+    },
+    {
+      "imgUrl": "https://img.alicdn.com/imgextra/i1/1/TB2FzZdouJ8puFjy1XbXXagqVXa_!!1-2-yamato.png_350x350q90.jpg",
+      "name": "OPPO",
+      "width": 300,
+      "height": 450
+    },
+    {
+      "imgUrl": "https://img.alicdn.com/imgextra/i3/749154487/TB2Th0xkpXXXXXoXpXXXXXXXXXX_!!749154487.jpg_200x200q90.jpg_.webp",
+      "name": "杯子",
+      "width": 300,
+      "height": 350
+    }
+  ]
+}
