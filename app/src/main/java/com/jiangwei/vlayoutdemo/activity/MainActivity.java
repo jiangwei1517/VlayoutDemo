@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.animation.Interpolator;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.Scroller;
 import android.widget.TextView;
 
@@ -62,8 +61,9 @@ public class MainActivity extends Activity {
             super.handleMessage(msg);
             switch (msg.what) {
                 case 1:
+                    removeCallbacksAndMessages(null);
                     mVp.setCurrentItem(mVp.getCurrentItem() + 1);
-                    sendEmptyMessageDelayed(BinnerMessage_Loop, 3000);
+                    sendEmptyMessageDelayed(BinnerMessage_Loop, 4000);
                     break;
                 default:
                     break;
@@ -113,26 +113,29 @@ public class MainActivity extends Activity {
         mRecyclerView.setAdapter(delegateAdapter);
     }
 
+    /*
+        天猫历史
+        有问题StaggeredGridLayoutHelper上面套上一个StickyLayout时会UI卡顿
+     */
     private void tianMaoHistory(List<DelegateAdapter.Adapter> adapters) {
-        mStickyLayoutHelperHistory.setMarginBottom(20);
-        adapters.add(new CommonSticky(this, mStickyLayoutHelperHistory) {
-            @Override
-            public void onBindViewHolder(CommonStickyViewHolder holder, int position) {
-                holder.tv.setText("历史纪录");
-            }
-        });
+
+//        mStickyLayoutHelperHistory.setMarginBottom(20);
+//        adapters.add(new CommonSticky(this, mStickyLayoutHelperHistory) {
+//            @Override
+//            public void onBindViewHolder(CommonStickyViewHolder holder, int position) {
+//                holder.tv.setText("历史纪录");
+//            }
+//        });
+
         //设置瀑布流布局
-        StaggeredGridLayoutHelper staggeredGridLayoutHelper = new StaggeredGridLayoutHelper();
-        staggeredGridLayoutHelper.setLane(2);
-        staggeredGridLayoutHelper.setHGap(10);
-        staggeredGridLayoutHelper.setVGap(10);
+        StaggeredGridLayoutHelper staggeredGridLayoutHelper = new StaggeredGridLayoutHelper(2, 10);
         staggeredGridLayoutHelper.setMarginBottom(30);
         adapters.add(new StaggeredAdapter(this, staggeredGridLayoutHelper, mTianMao.history.size()) {
             @Override
             public void onBindViewHolder(StaggeredViewHolder holder, int position) {
-                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(400, mTianMao.history.get(position).height);
-                holder.iv.setLayoutParams(params);
-                Glide.with(MainActivity.this).load(mTianMao.history.get(position).imgUrl).into(holder.iv);
+                holder.llMain.getLayoutParams().height = mTianMao.history.get(position).height;
+                holder.llMain.getLayoutParams().width = 400;
+                Glide.with(MainActivity.this).load(mTianMao.history.get(position).imgUrl).dontAnimate().into(holder.iv);
             }
         });
     }
@@ -250,7 +253,7 @@ public class MainActivity extends Activity {
         adapters.add(new BinnerAdapter(this, singleLayoutHelper) {
             @Override
             public void onBindViewHolder(final BinnerViewHolder holder, int position) {
-                mHandler.removeCallbacksAndMessages(null);
+
                 mVp = holder.vp;
                 holder.vp.setAdapter(new PagerAdapter() {
                     @Override
@@ -275,7 +278,6 @@ public class MainActivity extends Activity {
                         if (newPosition < 0) {
                             newPosition = mTianMao.loopData.items.size() + position;
                         }
-                        System.out.println(newPosition);
                         container.addView(viewLists.get(newPosition));
                         viewLists.get(newPosition).setTag(newPosition);
                         viewLists.get(newPosition).setOnClickListener(new View.OnClickListener() {
@@ -290,12 +292,13 @@ public class MainActivity extends Activity {
                 });
                 setViewPagerScroller();
                 holder.vp.setCurrentItem(Integer.MAX_VALUE / 2);
-                holder.vp.postDelayed(new Runnable() {
+                mVp.postDelayed(new Runnable() {
                     @Override
                     public void run() {
+                        mHandler.removeCallbacksAndMessages(null);
                         mHandler.sendEmptyMessage(BinnerMessage_Loop);
                     }
-                }, 3000);
+                }, 4000);
                 holder.vp.setOnTouchListener(new View.OnTouchListener() {
                     @Override
                     public boolean onTouch(View v, MotionEvent event) {
@@ -310,12 +313,12 @@ public class MainActivity extends Activity {
 
                             case MotionEvent.ACTION_UP:
                                 mHandler.removeCallbacksAndMessages(null);
-                                mHandler.sendEmptyMessageDelayed(BinnerMessage_Loop, 3000);
+                                mHandler.sendEmptyMessageDelayed(BinnerMessage_Loop, 4000);
                                 break;
 
                             case MotionEvent.ACTION_CANCEL:
                                 mHandler.removeCallbacksAndMessages(null);
-                                mHandler.sendEmptyMessageDelayed(BinnerMessage_Loop, 3000);
+                                mHandler.sendEmptyMessageDelayed(BinnerMessage_Loop, 4000);
                                 break;
                         }
                         return false;
@@ -325,6 +328,9 @@ public class MainActivity extends Activity {
         });
     }
 
+    /*
+        广告栏的动画view
+     */
     @NonNull
     private List<View> binnerViews() {
         final List<View> viewLists = new ArrayList<>();
@@ -339,6 +345,9 @@ public class MainActivity extends Activity {
         return viewLists;
     }
 
+    /*
+        从assets文件中获取json数据
+     */
     private void getDataFromJson(String path) {
         InputStream is = null;
         try {
@@ -349,8 +358,10 @@ public class MainActivity extends Activity {
         }
     }
 
+    /*
+        修改viewPager的滚动动画
+     */
     private void setViewPagerScroller() {
-
         try {
             Field scrollerField = ViewPager.class.getDeclaredField("mScroller");
             scrollerField.setAccessible(true);
