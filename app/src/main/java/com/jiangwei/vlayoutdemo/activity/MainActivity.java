@@ -40,7 +40,6 @@ import com.jiangwei.vlayoutdemo.utils.ToastUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.ref.WeakReference;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
@@ -60,11 +59,11 @@ public class MainActivity extends Activity {
     private StickyLayoutHelper mStickyLayoutHelperHistory;
     private WindowManager mWindowManager;
 
-    public static class MyHandler extends Handler {
-        private WeakReference<MainActivity> weakReference;
+    public class MyHandler extends Handler {
+        private MainActivity mActivity;
 
         public MyHandler(MainActivity activity) {
-            weakReference = new WeakReference<MainActivity>(activity);
+            mActivity = activity;
         }
 
         @Override
@@ -72,7 +71,7 @@ public class MainActivity extends Activity {
             super.handleMessage(msg);
             switch (msg.what) {
                 case 1:
-                    weakReference.get().mVp.setCurrentItem(weakReference.get().mVp.getCurrentItem() + 1);
+                    mVp.setCurrentItem(mVp.getCurrentItem() + 1);
                     sendEmptyMessageDelayed(BinnerMessage_Loop, 4000);
                     break;
                 default:
@@ -96,7 +95,7 @@ public class MainActivity extends Activity {
         // 设置Adapter列表
         List<DelegateAdapter.Adapter> adapters = new ArrayList<>();
 
-        //设置CommonSticky布局
+        // 设置CommonSticky布局
         mStickyLayoutHelperHot = new StickyLayoutHelper();
         mStickyLayoutHelperHot.setStickyStart(true);
 
@@ -118,19 +117,19 @@ public class MainActivity extends Activity {
 
         tianMaoHistory(adapters);
 
-        //绑定delegateAdapter
+        // 绑定delegateAdapter
         DelegateAdapter delegateAdapter = new DelegateAdapter(vlm);
         delegateAdapter.setAdapters(adapters);
         mRecyclerView.setAdapter(delegateAdapter);
     }
 
     /*
-        天猫购物车 有bug,必须放在adapters的最前面,放后面不能滑动
+     * 天猫购物车 有bug,必须放在adapters的最前面,放后面不能滑动
      */
     private void tianMaoShopping(List<DelegateAdapter.Adapter> adapters) {
-        //设置浮动布局
+        // 设置浮动布局
         FloatLayoutHelper floatLayoutHelper = new FloatLayoutHelper();
-        //设置初始位置
+        // 设置初始位置
         floatLayoutHelper.setDefaultLocation(20, 250);
 
         adapters.add(new FloatAdapter(this, floatLayoutHelper) {
@@ -147,20 +146,21 @@ public class MainActivity extends Activity {
     }
 
     /*
-        天猫历史
-        有问题StaggeredGridLayoutHelper上面套上一个StickyLayout时会UI卡顿
+     * 天猫历史 有问题StaggeredGridLayoutHelper上面套上一个StickyLayout时会UI卡顿
      */
     private void tianMaoHistory(List<DelegateAdapter.Adapter> adapters) {
+        /*
+            折叠卡顿
+         */
+//         mStickyLayoutHelperHistory.setMarginBottom(20);
+//         adapters.add(new CommonSticky(this, mStickyLayoutHelperHistory) {
+//         @Override
+//         public void onBindViewHolder(CommonStickyViewHolder holder, int position) {
+//         holder.tv.setText("历史纪录");
+//         }
+//         });
 
-//        mStickyLayoutHelperHistory.setMarginBottom(20);
-//        adapters.add(new CommonSticky(this, mStickyLayoutHelperHistory) {
-//            @Override
-//            public void onBindViewHolder(CommonStickyViewHolder holder, int position) {
-//                holder.tv.setText("历史纪录");
-//            }
-//        });
-
-        //设置瀑布流布局
+        // 设置瀑布流布局
         StaggeredGridLayoutHelper staggeredGridLayoutHelper = new StaggeredGridLayoutHelper(2, 10);
         staggeredGridLayoutHelper.setMarginBottom(30);
         adapters.add(new StaggeredAdapter(this, staggeredGridLayoutHelper, mTianMao.history.size()) {
@@ -183,7 +183,7 @@ public class MainActivity extends Activity {
     }
 
     /*
-        天猫今日超值
+     * 天猫今日超值
      */
     private void tianMaoTodayHots(List<DelegateAdapter.Adapter> adapters) {
         mStickyLayoutHelperToday.setMarginBottom(20);
@@ -233,32 +233,33 @@ public class MainActivity extends Activity {
     }
 
     /*
-        天猫搜索
+     * 天猫搜索
      */
     private void tianMaoSearchView(List<DelegateAdapter.Adapter> adapters) {
-        //设置Sticky布局
+        // 设置Sticky布局
         StickyLayoutHelper stickyLayoutHelper = new StickyLayoutHelper();
         stickyLayoutHelper.setStickyStart(true);
 
         adapters.add(new SearchAdapter(this, stickyLayoutHelper) {
             @Override
             public void onBindViewHolder(final SearchViewHolder holder, int position) {
-                holder.itemView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-                    @Override
-                    public void onGlobalLayout() {
-                        mSearchViewHeight = holder.itemView.getMeasuredHeight();
-                        mStickyLayoutHelperHot.setOffset(mSearchViewHeight);
-                        mStickyLayoutHelperToday.setOffset(mSearchViewHeight);
-                        mStickyLayoutHelperHistory.setOffset(mSearchViewHeight);
-                    }
-                });
+                holder.itemView.getViewTreeObserver()
+                        .addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                            @Override
+                            public void onGlobalLayout() {
+                                mSearchViewHeight = holder.itemView.getMeasuredHeight();
+                                mStickyLayoutHelperHot.setOffset(mSearchViewHeight);
+                                mStickyLayoutHelperToday.setOffset(mSearchViewHeight);
+                                mStickyLayoutHelperHistory.setOffset(mSearchViewHeight);
+                            }
+                        });
 
             }
         });
     }
 
     /*
-        天猫热门
+     * 天猫热门
      */
     private void tianMaoHotView(List<DelegateAdapter.Adapter> adapters) {
         mStickyLayoutHelperHot.setMarginBottom(20);
@@ -287,7 +288,7 @@ public class MainActivity extends Activity {
     }
 
     /*
-        广告栏
+     * 广告栏
      */
     private void tianMaoBinnerView(List<DelegateAdapter.Adapter> adapters) {
         SingleLayoutHelper singleLayoutHelper = new SingleLayoutHelper();
@@ -365,7 +366,7 @@ public class MainActivity extends Activity {
     }
 
     /*
-        广告栏的动画view
+     * 广告栏的动画view
      */
     @NonNull
     private List<View> binnerViews() {
@@ -382,7 +383,7 @@ public class MainActivity extends Activity {
     }
 
     /*
-        从assets文件中获取json数据
+     * 从assets文件中获取json数据
      */
     private void getDataFromJson(String path) {
         InputStream is = null;
@@ -395,7 +396,7 @@ public class MainActivity extends Activity {
     }
 
     /*
-        修改viewPager的滚动动画
+     * 修改viewPager的滚动动画
      */
     private void setViewPagerScroller() {
         try {
@@ -407,7 +408,7 @@ public class MainActivity extends Activity {
             Scroller scroller = new Scroller(this, (Interpolator) interpolator.get(null)) {
                 @Override
                 public void startScroll(int startX, int startY, int dx, int dy, int duration) {
-                    super.startScroll(startX, startY, dx, dy, duration * 7);    // 这里是关键，将duration变长或变短
+                    super.startScroll(startX, startY, dx, dy, duration * 7); // 这里是关键，将duration变长或变短
                 }
             };
             scrollerField.set(mVp, scroller);
@@ -418,4 +419,11 @@ public class MainActivity extends Activity {
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mHandler != null) {
+            mHandler.removeCallbacksAndMessages(null);
+        }
+    }
 }

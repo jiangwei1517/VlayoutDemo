@@ -2,7 +2,6 @@ package com.jiangwei.vlayoutdemo.adapter;
 
 import android.content.Context;
 import android.support.constraint.ConstraintLayout;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,13 +52,11 @@ public abstract class StaggeredAdapter extends DelegateAdapter.Adapter<Staggered
     public static class StaggeredViewHolder extends RecyclerView.ViewHolder {
         public ImageView iv;
         public ConstraintLayout llMain;
-        public CardView cardView;
 
         public StaggeredViewHolder(View itemView) {
             super(itemView);
             iv = (ImageView) itemView.findViewById(R.id.iv);
             llMain = (ConstraintLayout) itemView.findViewById(R.id.ll_main);
-//            cardView = (CardView) itemView.findViewById(R.id.card);
         }
     }
 }
